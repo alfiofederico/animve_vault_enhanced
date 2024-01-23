@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { MotionDiv } from "./MotionDiv";
+import Link from "next/link";
 
 export interface AnimeProp {
-  id: string;
+  id: number;
   name: string;
   image: {
     original: string;
@@ -16,6 +17,7 @@ export interface AnimeProp {
 interface Prop {
   anime: AnimeProp;
   index: number;
+  id: number;
 }
 
 const variants = {
@@ -37,14 +39,16 @@ function AnimeCard({ anime, index }: Prop) {
       viewport={{ amount: 0 }}
       className="max-w-sm rounded relative w-full"
     >
-      <div className="relative w-full h-[37vh]">
-        <Image
-          src={`https://shikimori.one${anime.image.original}`}
-          alt={anime.name}
-          fill
-          className="rounded-xl"
-        />
-      </div>
+      <Link key={anime.id} href={`/anime/${anime.id}`}>
+        <div className="relative w-full h-[37vh]">
+          <Image
+            src={`https://shikimori.one${anime.image.original}`}
+            alt={anime.name}
+            fill
+            className="rounded-xl"
+          />
+        </div>
+      </Link>
       <div className="py-4 flex flex-col gap-3">
         <div className="flex justify-between items-center gap-1">
           <h2 className="font-bold text-white text-xl line-clamp-1 w-full">

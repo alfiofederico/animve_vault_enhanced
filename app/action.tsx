@@ -10,7 +10,17 @@ export const fetchAnime = async (page: number) => {
 
   const data = await response.json();
 
-  return data.map((item: AnimeProp, index: number) => (
-    <AnimeCard key={item.id} anime={item} index={index} />
+  return data.map((item: AnimeProp, index: number, id: number) => (
+    <AnimeCard key={item.id} anime={item} index={index} id={id} />
   ));
+};
+
+export const fetchSingleAnime = async (id: number) => {
+  const response = await fetch(`https://shikimori.one/api/animes/${id}`);
+
+  const data = await response.json();
+
+  /*   return data.map((item: AnimeProp, index: number, id: number) => (
+    <AnimeCard key={item.id} anime={item} index={index} id={id} />
+  )); */
 };
